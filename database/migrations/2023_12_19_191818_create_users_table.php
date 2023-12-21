@@ -21,12 +21,19 @@ return new class extends Migration
             $table->foreign('role_id')->references('id')->on('roles');
 
             $table->string('name');
-            $table->string('slug')->nullable();
             $table->string('nisn');
             $table->string('phone');
-            $table->string('image');
+            $table->string('linkedin')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('description')->nullable();
+            $table->string('image')->nullable();
+
+
             $table->string('username');
+            $table->string('slug')->nullable();
             $table->string('password');
+
+            $table->rememberToken();
 
             $table->timestamps();
         });

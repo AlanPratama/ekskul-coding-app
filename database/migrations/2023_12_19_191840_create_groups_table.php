@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-
-            $table->unsignedBigInteger('ketua_id');
-            $table->foreign('ketua_id')->references('id')->on('users');
-
             $table->string('slug')->nullable();
+            $table->string('image')->nullable();
+
             $table->timestamps();
+
+
+            // $table->unsignedBigInteger('ketua_id');
+            // $table->foreign('ketua_id')->references('id')->on('users');
+
         });
     }
 

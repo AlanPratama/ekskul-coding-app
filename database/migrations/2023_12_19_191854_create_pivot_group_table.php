@@ -20,6 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('group_id');
             $table->foreign('group_id')->references('id')->on('groups');
 
+            $table->string('obligation');
+
             $table->timestamps();
         });
     }

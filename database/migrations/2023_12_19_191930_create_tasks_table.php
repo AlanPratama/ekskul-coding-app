@@ -14,15 +14,12 @@ return new class extends Migration
         Schema::create('tasks_group', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('group_id');
-            $table->foreign('group_id')->references('id')->on('groups');
-
             $table->string('title');
             $table->string('slug')->nullable();
             $table->string('description');
             $table->date('date_start');
             $table->date('date_end');
-            $table->date('actual_date_end')->nullable();
+            $table->string('file')->nullable();
 
             $table->string('status');
 

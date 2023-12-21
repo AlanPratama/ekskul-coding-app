@@ -13,18 +13,13 @@ return new class extends Migration
     {
         Schema::create('tasks_individu', function (Blueprint $table) {
             $table->id();
-
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-
             $table->string('title');
             $table->string('slug')->nullable();
             $table->string('description');
 
             $table->date('date_start');
             $table->date('date_end');
-            $table->date('actual_date_end');
-
+            $table->string('file')->nullable();
             $table->string('status');
             $table->timestamps();
         });
