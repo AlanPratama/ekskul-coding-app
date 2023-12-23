@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AuthController::class, 'signIn']);
+Route::get('/', [AuthController::class, 'signIn'])->name('signIn-index');
+Route::post('/', [AuthController::class, 'signInProcess'])->name('signIn-process');
+
 Route::get('/sign-up', [AuthController::class, 'signUp']);
+Route::post('/sign-up', [AuthController::class, 'signUpProcess'])->name('signUp-process');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/logout', [AuthController::class, 'logout']);
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+
+    Route::get('/profile', [UserController::class, 'profile']);
+    Route::get('/profile/setting', [UserController::class, 'setting']);
+    Route::put('/profile/setting/{slug}', [UserController::class, 'profileEdit'])->name('profile-edit');
+
+    Route::get('/side-part', [UserController::class, 'sidePart']);
+    Route::post('/side-part', [UserController::class, 'addSkill'])->name('addSkill');
+    Route::post('/side-part/{id}', [UserController::class, 'editSkill'])->name('editSkill');
+});

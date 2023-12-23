@@ -20,9 +20,9 @@ return new class extends Migration
             $table->unsignedBigInteger('task_id');
             $table->foreign('task_id')->references('id')->on('tasks_group');
 
-            $table->string('title');
-            $table->string('description');
-            $table->string('file');
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->string('file')->nullable();
 
             $table->integer('grade')->nullable();
             $table->text('comment')->nullable();

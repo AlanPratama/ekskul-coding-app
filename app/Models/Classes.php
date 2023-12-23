@@ -10,4 +10,12 @@ class Classes extends Model
     use HasFactory;
 
     protected $table = 'class';
+
+    protected $fillable = [
+        'name'
+    ];
+
+    public function user() {
+        return $this->hasMany(User::class, 'class_id');
+    }
 }

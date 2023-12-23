@@ -16,10 +16,11 @@ return new class extends Migration
 
             $table->string('title');
             $table->string('slug')->nullable();
-            $table->string('description');
+            $table->text('description')->nullable();
             $table->date('date_start');
             $table->date('date_end');
             $table->string('file')->nullable();
+            $table->string('terlambat')->nullable();
 
             $table->string('status');
 

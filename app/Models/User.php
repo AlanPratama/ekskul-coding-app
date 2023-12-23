@@ -17,9 +17,25 @@ class User extends Authenticatable
     protected $table = 'users';
 
     protected $fillable = [
+        'class_id',
+        'role_id',
+
         'name',
+        'nisn',
+
+        'phone',
+        'linkedin',
+        'instagram',
         'email',
+
+        'description',
+        'image',
+
+        'username',
+        'slug',
         'password',
+
+        'remember_token'
     ];
 
 
@@ -31,6 +47,18 @@ class User extends Authenticatable
             ]
         ];
     }
+
+    public function class() {
+        return $this->belongsTo(Classes::class, 'class_id');
+    }
+
+
+    public function skills() {
+        return $this->belongsToMany(Skill::class, 'pivot_skill', 'user_id', 'skill_id');
+    }
+
+
+
 
 
 
@@ -57,5 +85,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+    ];
+
+    protected $attributes = [
+        'role_id' => 3,
     ];
 }

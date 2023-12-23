@@ -21,11 +21,15 @@ return new class extends Migration
             $table->foreign('role_id')->references('id')->on('roles');
 
             $table->string('name');
-            $table->string('nisn');
-            $table->string('phone');
+            $table->string('nisn')->nullable();
+
+            $table->string('phone')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('instagram')->nullable();
-            $table->string('description')->nullable();
+
+            $table->string('email')->nullable();
+
+            $table->text('description')->nullable();
             $table->string('image')->nullable();
 
 
