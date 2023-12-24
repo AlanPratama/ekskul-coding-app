@@ -29,12 +29,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
     Route::get('/profile', [UserController::class, 'profile']);
-    Route::get('/profile/setting', [UserController::class, 'setting']);
+
+    // Route::get('/profile/setting', [UserController::class, 'setting']);
+    Route::get('/setting', [UserController::class, 'setting']);
+
     Route::put('/profile/setting/{slug}', [UserController::class, 'profileEdit'])->name('profile-edit');
 
-    Route::get('/profile/absen', [UserController::class, 'indexAbsen']);
+    // Route::get('/profile/absen', [UserController::class, 'indexAbsen']);
+    Route::get('/absen', [UserController::class, 'indexAbsen']);
+
     Route::post('/qrAbsenHadir', [UserController::class, 'qrHadir'])->name('qrAbsenHadir');
     Route::post('/fotoAbsenHadir', [UserController::class, 'fotoHadir'])->name('fotoAbsenHadir');
+
+    Route::post('/izinHadir', [UserController::class, 'izinHadir'])->name('izinHadir');
+
+
 
 
     Route::get('/side-part', [UserController::class, 'sidePart']);

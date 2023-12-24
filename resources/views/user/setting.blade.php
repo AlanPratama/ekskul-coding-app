@@ -9,7 +9,7 @@
         <nav class="absolute z-20 flex flex-wrap items-center justify-between w-full px-6 py-2 text-white transition-all shadow-none duration-250 ease-soft-in lg:flex-nowrap lg:justify-start"
             navbar-profile navbar-scroll="true">
             <div class="flex items-center justify-between w-full px-6 py-1 mx-auto flex-wrap-inherit">
-                <nav>
+                {{-- <nav>
                     <!-- breadcrumb -->
                     <ol class="flex flex-wrap pt-1 pl-2 pr-4 mr-12 bg-transparent rounded-lg sm:mr-16">
                         <li class="leading-normal text-sm">
@@ -19,7 +19,7 @@
                             aria-current="page">Profile</li>
                     </ol>
                     <h6 class="mb-2 ml-2 font-bold text-white capitalize">Profile</h6>
-                </nav>
+                </nav> --}}
 
                 <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
                     <div class="flex items-center md:ml-auto md:pr-4">

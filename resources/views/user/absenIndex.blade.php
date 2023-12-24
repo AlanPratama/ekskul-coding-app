@@ -7,7 +7,7 @@
         <nav class="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all shadow-none duration-250 ease-soft-in rounded-2xl lg:flex-nowrap lg:justify-start"
             navbar-main navbar-scroll="true">
             <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
-                <nav>
+                {{-- <nav>
                     <!-- breadcrumb -->
                     <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
                         <li class="text-sm leading-normal">
@@ -17,32 +17,21 @@
                             aria-current="page">Tables</li>
                     </ol>
                     <h6 class="mb-0 font-bold capitalize">Tables</h6>
-                </nav>
+                </nav> --}}
 
                 <div class="flex  items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
-                    <div class="flex items-center md:ml-auto md:pr-4">
-                        <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease-soft">
-                            <span
-                                class="text-sm ease-soft leading-5.6 absolute z-10 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
-                                <i class="fas fa-search" aria-hidden="true"></i>
-                            </span>
-                            <input type="text"
-                                class="pl-8.75 text-sm focus:shadow-soft-primary-outline ease-soft w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
-                                placeholder="Type here..." />
+                    <div class="flex items-center md:ml-auto md:pr-4 w-full">
+                        <div class="flex justify-start items-center w-full transition-all rounded-lg ease-soft">
+                            <img src="{{ asset('assets/1.png') }}" alt="" class="w-12">
+                            <h3 class="w-full text-2xl mt-2">CCC</h3>
                         </div>
                     </div>
                     <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
                         <!-- online builder btn  -->
                         <!-- <li class="flex items-center">
-                                          <a class="inline-block px-8 py-2 mb-0 mr-4 text-xs font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer leading-pro border-fuchsia-500 ease-soft-in hover:scale-102 active:shadow-soft-xs text-fuchsia-500 hover:border-fuchsia-500 active:bg-fuchsia-500 active:hover:text-fuchsia-500 hover:text-fuchsia-500 tracking-tight-soft hover:bg-transparent hover:opacity-75 hover:shadow-none active:text-white active:hover:bg-transparent" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
-                                        </li> -->
-                        <li class="flex items-center">
-                            <a href="../pages/sign-in.html"
-                                class="block px-0 py-2 text-sm font-semibold transition-all ease-nav-brand text-slate-500">
-                                <i class="fa fa-user sm:mr-1" aria-hidden="true"></i>
-                                <span class="hidden sm:inline">Sign In</span>
-                            </a>
-                        </li>
+                                                  <a class="inline-block px-8 py-2 mb-0 mr-4 text-xs font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer leading-pro border-fuchsia-500 ease-soft-in hover:scale-102 active:shadow-soft-xs text-fuchsia-500 hover:border-fuchsia-500 active:bg-fuchsia-500 active:hover:text-fuchsia-500 hover:text-fuchsia-500 tracking-tight-soft hover:bg-transparent hover:opacity-75 hover:shadow-none active:text-white active:hover:bg-transparent" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
+                                                </li> -->
+
                         <li class="flex items-center pl-4 xl:hidden">
                             <a href="javascript:;" class="block p-0 text-sm transition-all ease-nav-brand text-slate-500"
                                 sidenav-trigger>
@@ -174,14 +163,14 @@
         @endif
 
         @if ($todayPresent->count() > 0)
-        <div class="pt-12 mb-4">
-            <div class="flex flex-col justify-center items-center gap-4">
-                <img src="{{ asset('assets/data/alreadyPresent.jpeg') }}" alt="Sudah Absen" class="w-80 rounded-2" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
-                <h1 class="capitalize text-2xl text-center">Kamu sudah absen hari ini, Great!</h1>
+            <div class="pt-12 mb-4">
+                <div class="flex flex-col justify-center items-center gap-4">
+                    <img src="{{ asset('assets/data/alreadyPresent.jpeg') }}" alt="Sudah Absen" class="w-80 rounded-2"
+                        style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
+                    <h1 class="capitalize text-2xl text-center">Kamu sudah absen hari ini, Great!</h1>
+                </div>
             </div>
-        </div>
-        <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/100 to-transparent" />
-
+            <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/100 to-transparent" />
         @else
             <div class="pt-12 mb-4">
                 <h1 class="capitalize text-2xl text-center">Kamu belum absen hari ini, silahkan absen!</h1>
@@ -215,8 +204,15 @@
                                 </div>
                                 <!-- Modal body -->
                                 <div class="p-4 md:p-5">
-                                    <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Connect with one of our
-                                        available wallet providers or create a new one.</p>
+                                    <h2 class="text-xl">QR Code</h2>
+                                    <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Scan QR Code kamu di
+                                        kamera yang disediakan pengurus Coding Coding Club</p>
+
+                                    <h2 class="text-xl">Ambil Foto</h2>
+                                    <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Mengirim foto untuk
+                                        absen</p>
+
+
                                     <ul class="my-4 space-y-3">
                                         <li>
                                             <button data-modal-target="qr-hadir-modal" data-modal-toggle="qr-hadir-modal"
@@ -299,8 +295,8 @@
                                                             <h3
                                                                 class="text-xl font-semibold text-gray-900 dark:text-white flex justify-start items-center gap-2">
                                                                 <i
-                                                                    class="fa-solid fa-qrcode bg-blue-500 text-white p-2 rounded"></i>
-                                                                <span>QR CODE</span>
+                                                                    class="fa-solid fa-camera-retro bg-blue-500 text-white p-2 rounded"></i>
+                                                                <span>AMBIL FOTO</span>
                                                             </h3>
                                                             <button type="button"
                                                                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -318,12 +314,12 @@
                                                         <!-- Modal body -->
                                                         <div
                                                             class="p-4 md:p-5 space-y-4 flex flex-col justify-center items-center">
-                                                            <img src="{{ asset('assets/65.png') }}" alt=""
-                                                                class="w-48 rounded" id="imagePreview"
+                                                            <img src="{{ asset('assets/data/image-preview.png') }}"
+                                                                alt="" class="w-68 rounded" id="imagePreview"
                                                                 style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
                                                             <input name="image"
                                                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                                                id="gambar" type="file" accept="image/*">
+                                                                id="gambar" type="file" accept="image/*" required>
                                                             <script>
                                                                 document.addEventListener('DOMContentLoaded', function() {
                                                                     const imageInput = document.getElementById('gambar');
@@ -372,11 +368,85 @@
                         </div>
                     </div>
 
-                    <button type="button"
+                    <button type="button" data-modal-target="izin-absen-modal" data-modal-toggle="izin-absen-modal"
                         class="inline-block px-8 py-3 mb-4 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-red-500 to-yellow-400 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Izin</button>
-                    {{-- <button type="button" class="inline-block px-6 py-3 mb-4 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Button</button> --}}
+                    <!-- Main modal -->
+                    <div id="izin-absen-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+                        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div class="relative p-4 w-full max-w-2xl max-h-full">
+                            <!-- Modal content -->
+                            <form action="{{ route('izinHadir') }}" method="post" enctype="multipart/form-data"
+                                class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                @csrf
+                                <!-- Modal header -->
+                                <div
+                                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                        ABSENSI IZIN
+                                    </h3>
+                                    <button type="button"
+                                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                        data-modal-hide="izin-absen-modal">
+                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 14 14">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                        </svg>
+                                        <span class="sr-only">Close modal</span>
+                                    </button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="p-4 md:p-5 space-y-4 flex sm:flex-row flex-col justify-center items-center gap-3">
+                                    <img src="{{ asset('assets/data/image-preview.png') }}" alt=""
+                                        class="w-68 rounded" id="imagePreviewIzin"
+                                        style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
 
+                                    <div class="flex flex-col items-center justify-start gap-2">
+
+                                        <input type="text"
+                                            class="text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
+                                            placeholder="Keterangan: 'Acara'" aria-label="keterangan" name="keterangan"
+                                            value="{{ old('keterangan') }}" aria-describedby="keterangan-addon" required />
+
+                                        <textarea rows="3" class="text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
+                                        placeholder="Alasan: 'Ada acara pernikahan yang harus saya dan keluarga hadiri'" aria-label="reason" name="reason"
+                                        value="{{ old('reason') }}" aria-describedby="reason-addon" required></textarea>
+
+                                        <input name="image" id="gambarIzin" type="file" accept="image/*"
+                                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" required>
+                                    </div>
+
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            const imageInputIzin = document.getElementById('gambarIzin');
+                                            const imagePreviewIzin = document.getElementById('imagePreviewIzin');
+
+                                            imageInputIzin.addEventListener('change', function() {
+                                                if (imageInputIzin.files && imageInputIzin.files[0]) {
+                                                    const reader = new FileReader();
+
+                                                    reader.onload = function(e) {
+                                                        imagePreviewIzin.src = e.target.result;
+                                                        imagePreviewIzin.style.display = 'block';
+                                                    };
+
+                                                    reader.readAsDataURL(imageInputIzin.files[0]);
+                                                }
+                                            });
+                                        });
+                                    </script>
+                                </div>
+                                <!-- Modal footer -->
+                                <div
+                                    class="flex justify-end items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Kirim</button>
+                                </div>
+                            </form>
+                    </div>
                 </div>
+                {{-- <button type="button" class="inline-block px-6 py-3 mb-4 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Button</button> --}}
+
+            </div>
             </div>
         @endif
 
@@ -399,14 +469,16 @@
                             {{ \Carbon\Carbon::parse($present->date)->format('d F Y') }} -
                             {{ $present->created_at->format('H:i') }}
                             <span
-                                class="bg-blue-500 text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ms-3">{{ $present->status }}</span>
+                                class="{{ ($present->status === 'Hadir' ? 'bg-blue-500' : 'bg-orange-500') }} text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded ms-3">{{ $present->status }}</span>
                         </h3>
-                        {{-- <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Ket: Acara</time> --}}
-                        {{-- <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus dolorem libero quia? Lorem ipsum dolor sit amets</p> --}}
-                        <a href="#"
+                        @if ($present->status === 'Izin')
+                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Ket: {{ $present->keterangan }}</time>
+                        <p class="text-base font-normal pb-0 mb-0 pr-1 text-gray-500 dark:text-gray-400">{{ $present->reason }}</p>
+                        @endif
+                        <div
                             class="inline-flex items-center px-4 py-2 mt-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">
                             <img src="{{ asset('storage/' . $present->image) }}" alt="absen" class="w-60">
-                        </a>
+                        </div>
                     </li>
                 @endforeach
             @else
@@ -425,8 +497,8 @@
                         <span
                             class="bg-orange-500 text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ms-3">invalid</span>
                     </h3>
-                    {{-- <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Ket: Acara</time> --}}
-                    {{-- <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus dolorem libero quia? Lorem ipsum dolor sit amets</p> --}}
+                    {{-- <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Ket: Acara</time>
+                    <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus dolorem libero quia? Lorem ipsum dolor sit amets</p> --}}
                     <div
                         class="inline-flex items-center p-2 mt-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">
                         <img src="{{ asset('assets/data/file-not-found.jpg') }}" alt="absen" class="w-60">

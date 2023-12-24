@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Termwind\Components\Raw;
 
 class UserController extends Controller
 {
@@ -109,7 +110,7 @@ class UserController extends Controller
             if ($request->hasFile('image')) {
                 $uploadFile = $request->file('image');
                 $extension = $uploadFile->getClientOriginalExtension();
-                $storeName = Auth::user()->slug . now()->format('Ymd') . '-' . Str::random(3) . '.' . $extension;
+                $storeName = Auth::user()->slug . '-' . now()->format('Ymd') . '-' . 'Hadir' . '-' . Str::random(3) . '.' . $extension;
                 $path = $uploadFile->storeAs('present/hadir/foto', $storeName);
             }
 
@@ -124,7 +125,44 @@ class UserController extends Controller
 
             Present::create($data);
 
-            return redirect('profile/absen')->with('status', 'BERHASIL ABSEN');
+            return redirect('profile/absen')->with('status', 'BERHASIL ABSEN (HADIR)');
+        }
+
+    }
+
+
+    public function izinHadir(Request $request)
+    {
+        $existPresent = Present::where('user_id', Auth::user()->id)->where('date', Carbon::now()->toDateString())->get();
+
+        if ($existPresent->count() > 0) {
+            return redirect()->back()->with('alreadyPresent', 'KAMU SUDAH ABSEN HARI INI!');
+        } else {
+            $validate = $request->validate([
+                'keterangan' => 'required',
+                'reason' => 'required',
+                'image' => ''
+            ]);
+
+            if ($request->hasFile('image')) {
+                $uploadFile = $request->file('image');
+                $extension = $uploadFile->getClientOriginalExtension();
+                $storeName = Auth::user()->slug . '-' . now()->format('Ymd') . '-' . 'Izin' . '-' . Str::random(3) . '.' . $extension;
+                $path = $uploadFile->storeAs('present/izin/'. $storeName);
+            }
+
+            $data = [
+                'user_id' => Auth::user()->id,
+                'image' => $path,
+                'date' => Carbon::now()->toDateString(),
+                'status' => 'Izin',
+                'keterangan' => $request->keterangan,
+                'reason' => $request->reason
+            ];
+
+            Present::create($data);
+
+            return redirect()->back()->with('status', 'BERHASIL ABSEN (IZIN)');
         }
 
     }
