@@ -174,8 +174,8 @@
         @endif
 
         @if ($todayPresent->count() > 0)
-        <div class="pt-12">
-            <div class="flex flex-col justify-center items-center gap-2">
+        <div class="pt-12 mb-4">
+            <div class="flex flex-col justify-center items-center gap-4">
                 <img src="{{ asset('assets/data/alreadyPresent.jpeg') }}" alt="Sudah Absen" class="w-80 rounded-2" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
                 <h1 class="capitalize text-2xl text-center">Kamu sudah absen hari ini, Great!</h1>
             </div>
@@ -183,7 +183,7 @@
         <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/100 to-transparent" />
 
         @else
-            <div class="pt-12">
+            <div class="pt-12 mb-4">
                 <h1 class="capitalize text-2xl text-center">Kamu belum absen hari ini, silahkan absen!</h1>
                 <div class="flex justify-center items-center gap-2">
                     <button type="button"
