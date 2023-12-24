@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +32,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/setting', [UserController::class, 'setting']);
     Route::put('/profile/setting/{slug}', [UserController::class, 'profileEdit'])->name('profile-edit');
 
+    Route::get('/profile/absen', [UserController::class, 'indexAbsen']);
+    Route::post('/qrAbsenHadir', [UserController::class, 'qrHadir'])->name('qrAbsenHadir');
+    Route::post('/fotoAbsenHadir', [UserController::class, 'fotoHadir'])->name('fotoAbsenHadir');
+
+
     Route::get('/side-part', [UserController::class, 'sidePart']);
-    Route::post('/side-part', [UserController::class, 'addSkill'])->name('addSkill');
-    Route::post('/side-part/{id}', [UserController::class, 'editSkill'])->name('editSkill');
+    // SKILLS || SKILLS || SKILLS || SKILLS || SKILLS || SKILLS || SKILLS || SKILLS || SKILLS || SKILLS || SKILLS
+    Route::post('/add-skill', [UserController::class, 'addSkill'])->name('addSkill');
+    Route::post('/edit-skill/{id}', [UserController::class, 'editSkill'])->name('editSkill');
+    Route::get('hapus-skill/{name}', [UserController::class, 'hapusSkill'])->name('hapusSkill');
+
+    // KELAS || KELAS || KELAS || KELAS || KELAS || KELAS || KELAS || KELAS || KELAS || KELAS || KELAS || KELAS
+    Route::post('/add-class', [UserController::class, 'addClass'])->name('addClass');
+    Route::post('/edit-class/{id}', [UserController::class, 'editClass'])->name('editClass');
+    Route::get('/hapus-class/{id}', [UserController::class, 'hapusClass'])->name('hapusClass');
+
+
+
 });

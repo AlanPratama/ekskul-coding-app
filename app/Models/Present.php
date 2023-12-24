@@ -10,4 +10,19 @@ class Present extends Model
     use HasFactory;
 
     protected $table = 'present';
+
+    protected $fillable = [
+        'user_id',
+        'image',
+        'date',
+        'status',
+        'keterangan',
+        'reason'
+    ];
+
+    public function users() {
+        return $this->hasMany(User::class, 'user_id');
+    }
+
+
 }

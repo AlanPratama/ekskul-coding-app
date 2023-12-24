@@ -15,7 +15,7 @@ class Classes extends Model
         'name'
     ];
 
-    public function user() {
+    public function users() {
         return $this->hasMany(User::class, 'class_id');
     }
 }

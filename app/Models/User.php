@@ -48,6 +48,10 @@ class User extends Authenticatable
         ];
     }
 
+    public function role() {
+        return $this->belongTo(Role::class, 'role_id');
+    }
+
     public function class() {
         return $this->belongsTo(Classes::class, 'class_id');
     }
@@ -57,7 +61,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Skill::class, 'pivot_skill', 'user_id', 'skill_id');
     }
 
-
+    public function present() {
+        return $this->belongsTo(Present::class, 'user_id');
+    }
 
 
 

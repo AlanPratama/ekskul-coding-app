@@ -33,8 +33,8 @@
                     <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
                         <!-- online builder btn  -->
                         <!-- <li class="flex items-center">
-                          <a class="inline-block px-8 py-2 mb-0 mr-4 text-xs font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer leading-pro border-fuchsia-500 ease-soft-in hover:scale-102 active:shadow-soft-xs text-fuchsia-500 hover:border-fuchsia-500 active:bg-fuchsia-500 active:hover:text-fuchsia-500 hover:text-fuchsia-500 tracking-tight-soft hover:bg-transparent hover:opacity-75 hover:shadow-none active:text-white active:hover:bg-transparent" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
-                        </li> -->
+                                      <a class="inline-block px-8 py-2 mb-0 mr-4 text-xs font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer leading-pro border-fuchsia-500 ease-soft-in hover:scale-102 active:shadow-soft-xs text-fuchsia-500 hover:border-fuchsia-500 active:bg-fuchsia-500 active:hover:text-fuchsia-500 hover:text-fuchsia-500 tracking-tight-soft hover:bg-transparent hover:opacity-75 hover:shadow-none active:text-white active:hover:bg-transparent" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
+                                    </li> -->
                         <li class="flex items-center">
                             <a href="../pages/sign-in.html"
                                 class="block px-0 py-2 text-sm font-semibold transition-all ease-nav-brand text-slate-500">
@@ -258,15 +258,182 @@
                                                     <td
                                                         class="p-2 pr-10 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                                         <p class="mb-0 text-xs font-semibold leading-tight">
-                                                                {{ $skill->users->count() }}
+                                                            {{ $skill->users->count() }}
                                                         </p>
                                                     </td>
+
+
                                                     <td
                                                         class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                                        <button data-modal-target="{{ $skill->name }}-modal"
-                                                            data-modal-toggle="{{ $skill->name }}-modal"
-                                                            class="bg-gradient-to-tl from-slate-600 to-slate-300 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Offline</button>
-                                                        <div id="{{ $skill->name }}-modal"
+                                                        <button data-modal-target="{{ $skill->name }}-modal-detail"
+                                                            data-modal-toggle="{{ $skill->name }}-modal-detail"
+                                                            class="bg-gradient-to-tl from-blue-600 to-blue-300 px-2.5 text-xs rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">I</button>
+                                                        <button data-modal-target="{{ $skill->name }}-modal-edit"
+                                                            data-modal-toggle="{{ $skill->name }}-modal-edit"
+                                                            class="bg-gradient-to-tl from-green-600 to-green-300 px-2.5 text-xs rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">E</button>
+                                                        <button
+                                                            class="bg-gradient-to-tl from-red-600 to-red-300 px-2.5 text-xs rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
+                                                            <a href="{{ url('hapus-skill/' . $skill->name) }}">H</a>
+                                                        </button>
+
+
+
+                                                        <div id="{{ $skill->name }}-modal-detail"
+                                                            style="z-index: 999 !important;" tabindex="-1"
+                                                            aria-hidden="true"
+                                                            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 justify-center text-start items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                                            <div class="relative p-4 w-full max-w-2xl max-h-full">
+                                                                <!-- Modal content -->
+                                                                <div
+                                                                    class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                                                    <!-- Modal header -->
+                                                                    <div
+                                                                        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                                                        <h3
+                                                                            class="text-xl font-semibold text-gray-900 dark:text-white flex justify-start items-center gap-2">
+                                                                            <img src="{{ asset('storage/' . $skill->image) }}"
+                                                                                alt="skills" class="w-10 h-10">
+                                                                            {{ $skill->name }}
+                                                                        </h3>
+                                                                        <button type="button"
+                                                                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                                                            data-modal-hide="{{ $skill->name }}-modal-detail">
+                                                                            <svg class="w-3 h-3" aria-hidden="true"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                fill="none" viewBox="0 0 14 14">
+                                                                                <path stroke="currentColor"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    stroke-width="2"
+                                                                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                                            </svg>
+                                                                            <span class="sr-only">Close modal</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- Modal body -->
+                                                                    <div class="p-4 md:p-5 space-y-4">
+                                                                        <div class="flex flex-wrap -mx-3">
+                                                                            <div class="flex-none w-full max-w-full px-3">
+                                                                                <div
+                                                                                    class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
+                                                                                    <div class="flex-auto px-0 pt-0 pb-2">
+                                                                                        <div class="p-0 overflow-x-auto">
+                                                                                            <table
+                                                                                                class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
+                                                                                                <thead
+                                                                                                    class="align-bottom">
+                                                                                                    <tr>
+                                                                                                        <th
+                                                                                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                            Users</th>
+                                                                                                        <th
+                                                                                                            class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                            Email</th>
+                                                                                                        <th
+                                                                                                            class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                            Kelompok</th>
+                                                                                                        <th
+                                                                                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                            Role</th>
+                                                                                                    </tr>
+                                                                                                </thead>
+                                                                                                <tbody>
+                                                                                                    @if ($skill->users->count() > 0)
+                                                                                                        @foreach ($skill->users as $user)
+                                                                                                            <tr>
+                                                                                                                <td
+                                                                                                                    class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                                                                                                    <div
+                                                                                                                        class="flex px-2 py-1">
+                                                                                                                        <div>
+                                                                                                                            <img src="{{ $user->image == null ? asset('assets/data/no-img.jpg') : asset('storage/' . $user->image) }}"
+                                                                                                                                class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-soft-in-out h-9 w-9 rounded-xl"
+                                                                                                                                alt="user1" />
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                            class="flex flex-col justify-center">
+                                                                                                                            <h6
+                                                                                                                                class="mb-0 text-sm leading-normal">
+                                                                                                                                {{ $user->name }}
+                                                                                                                            </h6>
+                                                                                                                            <p
+                                                                                                                                class="mb-0 text-xs leading-tight text-slate-400">
+                                                                                                                                {{ $user->phone }}
+                                                                                                                            </p>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </td>
+
+                                                                                                                <td
+                                                                                                                    class="p-2 text-start align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                                                                                                    <span
+                                                                                                                        class="text-xs font-semibold leading-tight text-slate-400">{{ $user->email }}</span>
+                                                                                                                </td>
+
+                                                                                                                <td
+                                                                                                                    class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                                                                                                    <p
+                                                                                                                        class="mb-0 text-xs font-semibold leading-tight">
+                                                                                                                        Kelompok
+                                                                                                                        Ambisius
+                                                                                                                    </p>
+                                                                                                                    <p
+                                                                                                                        class="mb-0 text-xs leading-tight text-slate-400">
+                                                                                                                        Anggota
+                                                                                                                    </p>
+                                                                                                                </td>
+
+                                                                                                                <td
+                                                                                                                    class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                                                                                                    <span
+                                                                                                                        class="bg-gradient-to-tl from-green-600 to-lime-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
+                                                                                                                        @if ($user->role_id === 1)
+                                                                                                                            P.
+                                                                                                                            Jawab
+                                                                                                                        @elseif($user->role_id === 2)
+                                                                                                                            Pengurus
+                                                                                                                        @else
+                                                                                                                            Member
+                                                                                                                        @endif
+                                                                                                                    </span>
+                                                                                                                </td>
+
+                                                                                                            </tr>
+                                                                                                        @endforeach
+                                                                                                    @else
+                                                                                                        <tr>
+                                                                                                            <td
+                                                                                                                colspan="4">
+                                                                                                                <div
+                                                                                                                    class="flex flex-col items-center justify-center">
+                                                                                                                    <img src="{{ asset('assets/data/file-not-found.jpg') }}"
+                                                                                                                        alt="not-found"
+                                                                                                                        class="w-48 h-48">
+                                                                                                                    <p>TIDAK
+                                                                                                                        ADA
+                                                                                                                        DATA
+                                                                                                                        USER
+                                                                                                                    </p>
+                                                                                                                </div>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    @endif
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div id="{{ $skill->name }}-modal-edit"
                                                             style="z-index: 999 !important;" tabindex="-1"
                                                             aria-hidden="true"
                                                             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -279,11 +446,11 @@
                                                                         class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                                                         <h3
                                                                             class="text-xl font-semibold text-gray-900 dark:text-white">
-                                                                            Tambah Skill
+                                                                            Edit Skill
                                                                         </h3>
                                                                         <button type="button"
                                                                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                                                            data-modal-hide="{{ $skill->name }}-modal">
+                                                                            data-modal-hide="{{ $skill->name }}-modal-edit">
                                                                             <svg class="w-3 h-3" aria-hidden="true"
                                                                                 xmlns="http://www.w3.org/2000/svg"
                                                                                 fill="none" viewBox="0 0 14 14">
@@ -312,7 +479,7 @@
                                                                                 required></input>
                                                                             <input type="file" name="image"
                                                                                 accept="image/*"
-                                                                                class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"/>
+                                                                                class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
                                                                             <button type="submit"
                                                                                 class="inline-block px-2 py-3 font-bold text-center text-white uppercase align-middle transition-all rounded cursor-pointer bg-gradient-to-tl from-blue-600 to-cyan-400 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Edit
                                                                                 Skill</button>
@@ -381,19 +548,15 @@
                                         <!-- Modal body -->
                                         <div
                                             class="p-4 md:p-5 space-y-4 flex flex-col sm:flex-row justify-center sm:justify-around sm:items-start items-center">
-                                            <img src="{{ asset('assets/65.png') }}" alt="" class="w-48 h-48">
-                                            <form class="flex flex-col gap-2" action="{{ route('addSkill') }}"
-                                                method="post" enctype="multipart/form-data">
+                                            <form class="flex justify-center items-start gap-2 w-full"
+                                                action="{{ route('addClass') }}" method="post">
                                                 @csrf
                                                 <input type="text" placeholder="Nama" name="name"
-                                                    class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                                                    required></input>
-                                                <input type="file" name="image" accept="image/*"
-                                                    class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
-                                                    required></input>
+                                                    class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-2/3 appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
+                                                    required />
                                                 <button type="submit"
-                                                    class="inline-block px-2 py-3 font-bold text-center text-white uppercase align-middle transition-all rounded cursor-pointer bg-gradient-to-tl from-blue-600 to-cyan-400 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Tambah
-                                                    Skill</button>
+                                                    class="inline-block w-1/3 px-2 py-3 font-bold text-center text-white uppercase align-middle transition-all rounded cursor-pointer bg-gradient-to-tl from-blue-600 to-cyan-400 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Tambah
+                                                    <span class="sm:inline-block hidden">Kelas</span></button>
                                             </form>
                                         </div>
 
@@ -436,16 +599,230 @@
                                                     </td>
                                                     <td
                                                         class="px-6 py-3 pr-10 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                                        @foreach ($class->user as $user)
+                                                        @foreach ($class->users as $user)
                                                             <p class="mb-0 text-xs font-semibold leading-tight">
                                                                 {{ $user->count() }}
                                                             </p>
                                                         @endforeach
                                                     </td>
                                                     <td
-                                                        class="px-6 py-3 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                                        <span
-                                                            class="bg-gradient-to-tl from-slate-600 to-slate-300 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Offline</span>
+                                                        class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                                        <button data-modal-target="{{ $class->name }}-modal-detail"
+                                                            data-modal-toggle="{{ $class->name }}-modal-detail"
+                                                            class="bg-gradient-to-tl from-blue-600 to-blue-300 px-2.5 text-xs rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">I</button>
+                                                        <button data-modal-target="{{ $class->name }}-modal-edit"
+                                                            data-modal-toggle="{{ $class->name }}-modal-edit"
+                                                            class="bg-gradient-to-tl from-green-600 to-green-300 px-2.5 text-xs rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">E</button>
+                                                        <button
+                                                            class="bg-gradient-to-tl from-red-600 to-red-300 px-2.5 text-xs rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
+                                                            <a href="{{ url('hapus-class/' . $class->id) }}">H</a>
+                                                        </button>
+
+
+
+                                                        <div id="{{ $class->name }}-modal-detail"
+                                                            style="z-index: 999 !important;" tabindex="-1"
+                                                            aria-hidden="true"
+                                                            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 justify-center text-start items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                                            <div class="relative p-4 w-full max-w-2xl max-h-full">
+                                                                <!-- Modal content -->
+                                                                <div
+                                                                    class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                                                    <!-- Modal header -->
+                                                                    <div
+                                                                        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                                                        <h3
+                                                                            class="text-xl font-semibold text-gray-900 dark:text-white flex justify-start items-center gap-2">
+                                                                            {{ $class->name }}
+                                                                        </h3>
+                                                                        <button type="button"
+                                                                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                                                            data-modal-hide="{{ $class->name }}-modal-detail">
+                                                                            <svg class="w-3 h-3" aria-hidden="true"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                fill="none" viewBox="0 0 14 14">
+                                                                                <path stroke="currentColor"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    stroke-width="2"
+                                                                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                                            </svg>
+                                                                            <span class="sr-only">Close modal</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- Modal body -->
+                                                                    <div class="p-4 md:p-5 space-y-4">
+                                                                        <div class="flex flex-wrap -mx-3">
+                                                                            <div class="flex-none w-full max-w-full px-3">
+                                                                                <div
+                                                                                    class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
+                                                                                    <div class="flex-auto px-0 pt-0 pb-2">
+                                                                                        <div class="p-0 overflow-x-auto">
+                                                                                            <table
+                                                                                                class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
+                                                                                                <thead
+                                                                                                    class="align-bottom">
+                                                                                                    <tr>
+                                                                                                        <th
+                                                                                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                            Users</th>
+                                                                                                        <th
+                                                                                                            class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                            Email</th>
+                                                                                                        <th
+                                                                                                            class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                            Kelompok</th>
+                                                                                                        <th
+                                                                                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                            Role</th>
+                                                                                                    </tr>
+                                                                                                </thead>
+                                                                                                <tbody>
+                                                                                                    @if ($class->users->count() > 0)
+                                                                                                        @foreach ($class->users as $user)
+                                                                                                            <tr>
+                                                                                                                <td
+                                                                                                                    class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                                                                                                    <div
+                                                                                                                        class="flex px-2 py-1">
+                                                                                                                        <div>
+                                                                                                                            <img src="{{ $user->image == null ? asset('assets/data/no-img.jpg') : asset('storage/' . $user->image) }}"
+                                                                                                                                class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-soft-in-out h-9 w-9 rounded-xl"
+                                                                                                                                alt="user1" />
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                            class="flex flex-col justify-center">
+                                                                                                                            <h6
+                                                                                                                                class="mb-0 text-sm leading-normal">
+                                                                                                                                {{ $user->name }}
+                                                                                                                            </h6>
+                                                                                                                            <p
+                                                                                                                                class="mb-0 text-xs leading-tight text-slate-400">
+                                                                                                                                {{ $user->phone }}
+                                                                                                                            </p>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </td>
+
+                                                                                                                <td
+                                                                                                                    class="p-2 text-start align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                                                                                                    <span
+                                                                                                                        class="text-xs font-semibold leading-tight text-slate-400">{{ $user->email }}</span>
+                                                                                                                </td>
+
+                                                                                                                <td
+                                                                                                                    class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                                                                                                    <p
+                                                                                                                        class="mb-0 text-xs font-semibold leading-tight">
+                                                                                                                        Kelompok
+                                                                                                                        Ambisius
+                                                                                                                    </p>
+                                                                                                                    <p
+                                                                                                                        class="mb-0 text-xs leading-tight text-slate-400">
+                                                                                                                        Anggota
+                                                                                                                    </p>
+                                                                                                                </td>
+
+                                                                                                                <td
+                                                                                                                    class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                                                                                                    <span
+                                                                                                                        class="bg-gradient-to-tl from-green-600 to-lime-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
+                                                                                                                        @if ($user->role_id === 1)
+                                                                                                                            P.
+                                                                                                                            Jawab
+                                                                                                                        @elseif($user->role_id === 2)
+                                                                                                                            Pengurus
+                                                                                                                        @else
+                                                                                                                            Member
+                                                                                                                        @endif
+                                                                                                                    </span>
+                                                                                                                </td>
+
+                                                                                                            </tr>
+                                                                                                        @endforeach
+                                                                                                    @else
+                                                                                                        <tr>
+                                                                                                            <td
+                                                                                                                colspan="4">
+                                                                                                                <div
+                                                                                                                    class="flex flex-col items-center justify-center">
+                                                                                                                    <img src="{{ asset('assets/data/file-not-found.jpg') }}"
+                                                                                                                        alt="not-found"
+                                                                                                                        class="w-48 h-48">
+                                                                                                                    <p>TIDAK
+                                                                                                                        ADA
+                                                                                                                        DATA
+                                                                                                                        USER
+                                                                                                                    </p>
+                                                                                                                </div>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    @endif
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div id="{{ $class->name }}-modal-edit"
+                                                            style="z-index: 999 !important;" tabindex="-1"
+                                                            aria-hidden="true"
+                                                            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                                            <div class="relative p-4 w-full max-w-2xl max-h-full">
+                                                                <!-- Modal content -->
+                                                                <div
+                                                                    class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                                                    <!-- Modal header -->
+                                                                    <div
+                                                                        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                                                        <h3
+                                                                            class="text-xl font-semibold text-gray-900 dark:text-white">
+                                                                            Edit Kelas ({{ $class->name }})
+                                                                        </h3>
+                                                                        <button type="button"
+                                                                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                                                            data-modal-hide="{{ $class->name }}-modal-edit">
+                                                                            <svg class="w-3 h-3" aria-hidden="true"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                fill="none" viewBox="0 0 14 14">
+                                                                                <path stroke="currentColor"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    stroke-width="2"
+                                                                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                                            </svg>
+                                                                            <span class="sr-only">Close modal</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- Modal body -->
+                                                                    <div
+                                                                        class="p-4 md:p-5 space-y-4 flex flex-col sm:flex-row justify-center sm:justify-around sm:items-start items-center">
+                                                                        <form
+                                                                            class="flex justify-center items-start gap-2 w-full"
+                                                                            action="{{ route('editClass', ['id' => $class->id]) }}"
+                                                                            method="post">
+                                                                            @csrf
+                                                                            <input type="text" placeholder="Nama"
+                                                                                name="name"
+                                                                                class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-2/3 appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
+                                                                                required />
+                                                                            <button type="submit"
+                                                                                class="inline-block w-1/3 px-2 py-3 font-bold text-center text-white uppercase align-middle transition-all rounded cursor-pointer bg-gradient-to-tl from-blue-600 to-cyan-400 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Submit</button>
+                                                                        </form>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach
