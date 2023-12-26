@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Setting')
+
 @section('head')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 @endsection
@@ -36,8 +38,8 @@
                     <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
                         <!-- online builder btn  -->
                         <!-- <li class="flex items-center">
-                          <a class="inline-block px-8 py-2 mb-0 mr-4 font-bold text-center text-white uppercase align-middle transition-all border border-solid rounded-lg shadow-none cursor-pointer leading-pro border-white/75 bg-white/10 ease-soft-in text-xs hover:scale-102 active:shadow-soft-xs tracking-tight-soft hover:border-white hover:bg-transparent hover:text-white hover:opacity-75 hover:shadow-none active:bg-white active:text-black active:hover:bg-transparent active:hover:text-white" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
-                        </li> -->
+                              <a class="inline-block px-8 py-2 mb-0 mr-4 font-bold text-center text-white uppercase align-middle transition-all border border-solid rounded-lg shadow-none cursor-pointer leading-pro border-white/75 bg-white/10 ease-soft-in text-xs hover:scale-102 active:shadow-soft-xs tracking-tight-soft hover:border-white hover:bg-transparent hover:text-white hover:opacity-75 hover:shadow-none active:bg-white active:text-black active:hover:bg-transparent active:hover:text-white" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
+                            </li> -->
                         <li class="flex items-center">
                             <a href="../pages/sign-in.html"
                                 class="block px-0 py-2 font-semibold text-white transition-all ease-soft-in-out text-sm">
@@ -173,7 +175,7 @@
                     <div class="flex-none w-auto max-w-full px-3">
                         <div
                             class="text-base ease-soft-in-out h-18.5 w-18.5 relative inline-flex items-center justify-center rounded-xl text-white transition-all duration-200">
-                            <img src="../assets/img/bruce-mars.jpg" alt="profile_image"
+                            <img id="imagePreviewProfileHeader" src="{{ (Auth::user()->image == null ? asset('assets/data/no-img.jpg') : asset('storage/'.Auth::user()->image)) }}" alt="profile_image"
                                 class="w-full shadow-soft-sm rounded-xl" />
                         </div>
                     </div>
@@ -384,7 +386,7 @@
                                         <label for="image"
                                             class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Profile
                                             Picture</label>
-                                        <input type="file" accept="image/*" name="image"
+                                        <input type="file" accept="image/*" name="image" id="gambarIzinProfile"
                                             class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
                                     </div>
                                 </div>
@@ -396,7 +398,7 @@
                                         <select name="class_id"
                                             class="text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
                                             name="class_id">
-                                            <option value="" disabled selected>Pilih Kelas</option>
+                                            <option value="" disabled selected>{{ Auth::user()->class->name }}</option>
                                             @foreach ($classes as $class)
                                                 <option value="{{ $class->id }}">{{ $class->name }}</option>
                                             @endForeach
@@ -421,25 +423,26 @@
                                     <div class="mb-4">
                                         <label for="skill"
                                             class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Skill</label>
-                                            <select class="skill-select focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" name="skill[]" multiple="multiple">
-                                                @foreach ($skills as $skill)
-                                                    @php
-                                                        $isSelected = false;
-                                                        // Check if the user has this skill
-                                                        if (Auth::user()->skills != null) {
-                                                            foreach (Auth::user()->skills as $userSkill) {
-                                                                if ($userSkill->id == $skill->id) {
-                                                                    $isSelected = true;
-                                                                    break;
-                                                                }
+                                        <select
+                                            class="skill-select focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"
+                                            name="skill[]" multiple="multiple">
+                                            @foreach ($skills as $skill)
+                                                @php
+                                                    $isSelected = false;
+                                                    if (Auth::user()->skills != null) {
+                                                        foreach (Auth::user()->skills as $userSkill) {
+                                                            if ($userSkill->id == $skill->id) {
+                                                                $isSelected = true;
+                                                                break;
                                                             }
                                                         }
-                                                    @endphp
-                                                    <option value="{{ $skill->id }}" {{ $isSelected ? 'selected' : '' }}>
-                                                        {{ $skill->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                                    }
+                                                @endphp
+                                                <option value="{{ $skill->id }}" {{ $isSelected ? 'selected' : '' }}>
+                                                    {{ $skill->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
 
                                     </div>
                                 </div>
@@ -454,8 +457,8 @@
                             <div class="w-4/12 max-w-full px-3 flex-0 ">
                                 <div class="mb-6 -mt-6 lg:mb-0 lg:-mt-16">
                                     <a href="javascript:;">
-                                        <img class="h-auto max-w-full border-2 border-white border-solid rounded-circle"
-                                            src="../assets/img/team-2.jpg" alt="profile image">
+                                        <img class="h-auto max-w-full border-2 border-white border-solid rounded-circle shadow-soft-xs" id="imagePreviewProfile"
+                                            src="{{ (Auth::user()->image == null ? asset('assets/data/no-img.jpg') : asset('storage/'.Auth::user()->image)) }}" alt="profile image">
                                     </a>
                                 </div>
                             </div>
@@ -512,6 +515,27 @@
             <script>
                 $(document).ready(function() {
                     $('.skill-select').select2();
+                });
+
+                document.addEventListener('DOMContentLoaded', function() {
+                    const imageInputProfile = document.getElementById('gambarIzinProfile');
+                    const imagePreviewProfile = document.getElementById('imagePreviewProfile');
+                    const imagePreviewProfileHeader = document.getElementById('imagePreviewProfileHeader');
+                    imageInputProfile.addEventListener('change', function() {
+                        if (imageInputProfile.files && imageInputProfile.files[0]) {
+                            const reader = new FileReader();
+
+                            reader.onload = function(e) {
+                                imagePreviewProfile.src = e.target.result;
+                                imagePreviewProfile.style.display = 'block';
+
+                                imagePreviewProfileHeader.src = e.target.result;
+                                imagePreviewProfileHeader.style.display = 'block';
+                            };
+
+                            reader.readAsDataURL(imageInputProfile.files[0]);
+                        }
+                    });
                 });
             </script>
         @endsection

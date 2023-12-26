@@ -67,6 +67,12 @@ class User extends Authenticatable
 
 
 
+    public function groups() {
+        return $this->belongsToMany(Group::class, 'pivot_group', 'user_id', 'group_id')->withPivot('obligation');;
+    }
+
+
+
 
 
 

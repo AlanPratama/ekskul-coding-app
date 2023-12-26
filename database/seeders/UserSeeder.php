@@ -14,13 +14,24 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'Admin',
-            'phone' => '088888888888',
-            'email' => 'admin@gmail.com',
-            'username' => 'admin',
-            'password' => Hash::make('admin'),
-            'role_id' => 1
-        ]);
+        // User::create([
+        //     'name' => 'Admin',
+        //     'phone' => '088888888888',
+        //     'email' => 'admin@gmail.com',
+        //     'username' => 'admin',
+        //     'password' => Hash::make('admin'),
+        //     'role_id' => 1
+        // ]);
+
+        for ($i=1; $i < 5; $i++) {
+            User::create([
+                'name' => 'Admin-'.$i,
+                'phone' => '08888888888'.$i,
+                'email' => $i.'admin@gmail.com',
+                'username' => 'admin'.$i,
+                'password' => Hash::make('admin'.$i),
+                'role_id' => 1
+            ]);
+        }
     }
 }

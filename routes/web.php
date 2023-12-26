@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\UserController;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -30,13 +32,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [UserController::class, 'profile']);
 
-    // Route::get('/profile/setting', [UserController::class, 'setting']);
-    Route::get('/setting', [UserController::class, 'setting']);
+    Route::get('/profile/setting', [UserController::class, 'setting']);
+    // Route::get('/setting', [UserController::class, 'setting']);
 
     Route::put('/profile/setting/{slug}', [UserController::class, 'profileEdit'])->name('profile-edit');
 
-    // Route::get('/profile/absen', [UserController::class, 'indexAbsen']);
-    Route::get('/absen', [UserController::class, 'indexAbsen']);
+    Route::get('/profile/absen', [UserController::class, 'indexAbsen']);
+    // Route::get('/absen', [UserController::class, 'indexAbsen']);
 
     Route::post('/qrAbsenHadir', [UserController::class, 'qrHadir'])->name('qrAbsenHadir');
     Route::post('/fotoAbsenHadir', [UserController::class, 'fotoHadir'])->name('fotoAbsenHadir');
@@ -57,6 +59,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/edit-class/{id}', [UserController::class, 'editClass'])->name('editClass');
     Route::get('/hapus-class/{id}', [UserController::class, 'hapusClass'])->name('hapusClass');
 
+    Route::get('/group', [GroupController::class, 'index']);
+    Route::post('/create.Group', [GroupController::class, 'createGroup'])->name('create.Group');
 
+    Route::prefix('group')->group(function() {
+        Route::get('/detail/{slug}', [GroupController::class, 'detailGroup']);
+        Route::delete('/delete/{slug}', [GroupController::class, 'deleteGroup'])->name('delete.group');
+        Route::put('/edit/{slug}', [GroupController::class, 'editGroup'])->name('edit.group');
+    });
 
 });

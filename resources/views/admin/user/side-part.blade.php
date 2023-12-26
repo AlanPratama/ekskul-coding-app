@@ -1,47 +1,38 @@
 @extends('layouts.admin')
 
+@section('title', 'Side Part')
+
 @section('content')
     <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
         <!-- Navbar -->
         <nav class="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all shadow-none duration-250 ease-soft-in rounded-2xl lg:flex-nowrap lg:justify-start"
             navbar-main navbar-scroll="true">
             <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
-                <nav>
-                    <!-- breadcrumb -->
-                    <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
-                        <li class="text-sm leading-normal">
-                            <a class="opacity-50 text-slate-700" href="javascript:;">Pages</a>
-                        </li>
-                        <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
-                            aria-current="page">Tables</li>
-                    </ol>
-                    <h6 class="mb-0 font-bold capitalize">Tables</h6>
-                </nav>
+                {{-- <nav>
+                <!-- breadcrumb -->
+                <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
+                    <li class="text-sm leading-normal">
+                        <a class="opacity-50 text-slate-700" href="javascript:;">Pages</a>
+                    </li>
+                    <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
+                        aria-current="page">Tables</li>
+                </ol>
+                <h6 class="mb-0 font-bold capitalize">Tables</h6>
+            </nav> --}}
 
                 <div class="flex  items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
-                    <div class="flex items-center md:ml-auto md:pr-4">
-                        <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease-soft">
-                            <span
-                                class="text-sm ease-soft leading-5.6 absolute z-10 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
-                                <i class="fas fa-search" aria-hidden="true"></i>
-                            </span>
-                            <input type="text"
-                                class="pl-8.75 text-sm focus:shadow-soft-primary-outline ease-soft w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
-                                placeholder="Type here..." />
+                    <div class="flex items-center md:ml-auto md:pr-4 w-full">
+                        <div class="flex justify-start items-center w-full transition-all rounded-lg ease-soft">
+                            <img src="{{ asset('assets/1.png') }}" alt="" class="w-12">
+                            <h3 class="w-full text-2xl mt-2">CCC</h3>
                         </div>
                     </div>
                     <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
                         <!-- online builder btn  -->
                         <!-- <li class="flex items-center">
-                                      <a class="inline-block px-8 py-2 mb-0 mr-4 text-xs font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer leading-pro border-fuchsia-500 ease-soft-in hover:scale-102 active:shadow-soft-xs text-fuchsia-500 hover:border-fuchsia-500 active:bg-fuchsia-500 active:hover:text-fuchsia-500 hover:text-fuchsia-500 tracking-tight-soft hover:bg-transparent hover:opacity-75 hover:shadow-none active:text-white active:hover:bg-transparent" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
-                                    </li> -->
-                        <li class="flex items-center">
-                            <a href="../pages/sign-in.html"
-                                class="block px-0 py-2 text-sm font-semibold transition-all ease-nav-brand text-slate-500">
-                                <i class="fa fa-user sm:mr-1" aria-hidden="true"></i>
-                                <span class="hidden sm:inline">Sign In</span>
-                            </a>
-                        </li>
+                                                                                              <a class="inline-block px-8 py-2 mb-0 mr-4 text-xs font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer leading-pro border-fuchsia-500 ease-soft-in hover:scale-102 active:shadow-soft-xs text-fuchsia-500 hover:border-fuchsia-500 active:bg-fuchsia-500 active:hover:text-fuchsia-500 hover:text-fuchsia-500 tracking-tight-soft hover:bg-transparent hover:opacity-75 hover:shadow-none active:text-white active:hover:bg-transparent" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
+                                                                                            </li> -->
+
                         <li class="flex items-center pl-4 xl:hidden">
                             <a href="javascript:;" class="block p-0 text-sm transition-all ease-nav-brand text-slate-500"
                                 sidenav-trigger>
@@ -199,20 +190,39 @@
                                         <!-- Modal body -->
                                         <div
                                             class="p-4 md:p-5 space-y-4 flex flex-col sm:flex-row justify-center sm:justify-around sm:items-start items-center">
-                                            <img src="{{ asset('assets/65.png') }}" alt="" class="w-48 h-48">
+                                            <img src="{{ asset('assets/data/image-preview.png') }}" alt="" class="w-68" id="imagePreviewSkillAdd">
                                             <form class="flex flex-col gap-2" action="{{ route('addSkill') }}"
                                                 method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 <input type="text" placeholder="Nama" name="name"
                                                     class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
                                                     required></input>
-                                                <input type="file" name="image" accept="image/*"
+                                                <input type="file" name="image" accept="image/*" id="gambarIzinSkillAddt"
                                                     class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
                                                     required></input>
                                                 <button type="submit"
                                                     class="inline-block px-2 py-3 font-bold text-center text-white uppercase align-middle transition-all rounded cursor-pointer bg-gradient-to-tl from-blue-600 to-cyan-400 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Tambah
                                                     Skill</button>
                                             </form>
+                                            <script>
+                                                document.addEventListener('DOMContentLoaded', function() {
+                                                    const imageInputSkillAdd = document.getElementById('gambarIzinSkillAddt');
+                                                    const imagePreviewSkillAdd = document.getElementById('imagePreviewSkillAdd');
+
+                                                    imageInputSkillAdd.addEventListener('change', function() {
+                                                        if (imageInputSkillAdd.files && imageInputSkillAdd.files[0]) {
+                                                            const reader = new FileReader();
+
+                                                            reader.onload = function(e) {
+                                                                imagePreviewSkillAdd.src = e.target.result;
+                                                                imagePreviewSkillAdd.style.display = 'block';
+                                                            };
+
+                                                            reader.readAsDataURL(imageInputSkillAdd.files[0]);
+                                                        }
+                                                    });
+                                                });
+                                            </script>
                                         </div>
 
                                     </div>
@@ -267,14 +277,18 @@
                                                         class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                                         <button data-modal-target="{{ $skill->name }}-modal-detail"
                                                             data-modal-toggle="{{ $skill->name }}-modal-detail"
-                                                            class="bg-gradient-to-tl from-blue-600 to-blue-300 px-2.5 text-xs rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">I</button>
+                                                            class="bg-gradient-to-tl from-blue-600 to-blue-300 px-1.4 text-lg rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"><i
+                                                                class="fa-solid fa-circle-info"></i></button>
                                                         <button data-modal-target="{{ $skill->name }}-modal-edit"
                                                             data-modal-toggle="{{ $skill->name }}-modal-edit"
-                                                            class="bg-gradient-to-tl from-green-600 to-green-300 px-2.5 text-xs rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">E</button>
-                                                        <button
-                                                            class="bg-gradient-to-tl from-red-600 to-red-300 px-2.5 text-xs rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
-                                                            <a href="{{ url('hapus-skill/' . $skill->name) }}">H</a>
-                                                        </button>
+                                                            class="bg-gradient-to-tl from-green-600 to-green-300 px-1.4 text-lg rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"><i
+                                                                class="fa-solid fa-pen-to-square"></i></button>
+                                                        <a href="{{ url('hapus-skill/' . $skill->name) }}">
+                                                            <button>
+                                                                <i
+                                                                    class="fa-solid fa-trash-can bg-gradient-to-tl from-red-600 to-red-300 px-1.4 text-lg rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"></i>
+                                                            </button>
+                                                        </a>
 
 
 
@@ -329,9 +343,9 @@
                                                                                                         <th
                                                                                                             class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                                                                                             Email</th>
-                                                                                                        <th
+                                                                                                        {{-- <th
                                                                                                             class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                                                                                            Kelompok</th>
+                                                                                                            Kelompok</th> --}}
                                                                                                         <th
                                                                                                             class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                                                                                             Role</th>
@@ -370,18 +384,18 @@
                                                                                                                         class="text-xs font-semibold leading-tight text-slate-400">{{ $user->email }}</span>
                                                                                                                 </td>
 
-                                                                                                                <td
+                                                                                                                {{-- <td
                                                                                                                     class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                                                                                                     <p
                                                                                                                         class="mb-0 text-xs font-semibold leading-tight">
-                                                                                                                        Kelompok
-                                                                                                                        Ambisius
+                                                                                                                        {{ $user->groups->name }}
+
                                                                                                                     </p>
                                                                                                                     <p
                                                                                                                         class="mb-0 text-xs leading-tight text-slate-400">
                                                                                                                         Anggota
                                                                                                                     </p>
-                                                                                                                </td>
+                                                                                                                </td> --}}
 
                                                                                                                 <td
                                                                                                                     class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
@@ -467,7 +481,8 @@
                                                                     <div
                                                                         class="p-4 md:p-5 space-y-4 flex flex-col sm:flex-row justify-center sm:justify-around sm:items-start items-center">
                                                                         <img src="{{ asset('storage/' . $skill->image) }}"
-                                                                            alt="" class="w-48 h-48">
+                                                                            id="imagePreviewSkillEdit" alt="skill"
+                                                                            class="w-68">
                                                                         <form class="flex flex-col gap-2"
                                                                             action="{{ route('editSkill', ['id' => $skill->id]) }}"
                                                                             method="post" enctype="multipart/form-data">
@@ -478,12 +493,31 @@
                                                                                 class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"
                                                                                 required></input>
                                                                             <input type="file" name="image"
-                                                                                accept="image/*"
+                                                                                id="gambarIzinSkillEdit" accept="image/*"
                                                                                 class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
                                                                             <button type="submit"
                                                                                 class="inline-block px-2 py-3 font-bold text-center text-white uppercase align-middle transition-all rounded cursor-pointer bg-gradient-to-tl from-blue-600 to-cyan-400 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Edit
                                                                                 Skill</button>
                                                                         </form>
+                                                                        <script>
+                                                                            document.addEventListener('DOMContentLoaded', function() {
+                                                                                const imageInputSkillEdit = document.getElementById('gambarIzinSkillEdit');
+                                                                                const imagePreviewSkillEdit = document.getElementById('imagePreviewSkillEdit');
+
+                                                                                imageInputSkillEdit.addEventListener('change', function() {
+                                                                                    if (imageInputSkillEdit.files && imageInputSkillEdit.files[0]) {
+                                                                                        const reader = new FileReader();
+
+                                                                                        reader.onload = function(e) {
+                                                                                            imagePreviewSkillEdit.src = e.target.result;
+                                                                                            imagePreviewSkillEdit.style.display = 'block';
+                                                                                        };
+
+                                                                                        reader.readAsDataURL(imageInputSkillEdit.files[0]);
+                                                                                    }
+                                                                                });
+                                                                            });
+                                                                        </script>
                                                                     </div>
 
                                                                 </div>
@@ -609,14 +643,18 @@
                                                         class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                                         <button data-modal-target="{{ $class->name }}-modal-detail"
                                                             data-modal-toggle="{{ $class->name }}-modal-detail"
-                                                            class="bg-gradient-to-tl from-blue-600 to-blue-300 px-2.5 text-xs rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">I</button>
+                                                            class="bg-gradient-to-tl from-blue-600 to-blue-300 px-1.4 text-lg rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"><i
+                                                                class="fa-solid fa-circle-info"></i></button>
                                                         <button data-modal-target="{{ $class->name }}-modal-edit"
                                                             data-modal-toggle="{{ $class->name }}-modal-edit"
-                                                            class="bg-gradient-to-tl from-green-600 to-green-300 px-2.5 text-xs rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">E</button>
-                                                        <button
-                                                            class="bg-gradient-to-tl from-red-600 to-red-300 px-2.5 text-xs rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
-                                                            <a href="{{ url('hapus-class/' . $class->id) }}">H</a>
-                                                        </button>
+                                                            class="bg-gradient-to-tl from-green-600 to-green-300 px-1.4 text-lg rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"><i
+                                                                class="fa-solid fa-pen-to-square"></i></button>
+                                                        <a href="{{ url('hapus-class/' . $class->id) }}">
+                                                            <button class="">
+                                                                <i
+                                                                    class="fa-solid fa-trash-can bg-gradient-to-tl from-red-600 to-red-300 px-1.4 text-lg rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"></i>
+                                                            </button>
+                                                        </a>
 
 
 
