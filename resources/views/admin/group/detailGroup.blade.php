@@ -162,14 +162,14 @@
             <div
                 class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
                 <div
-                    class="p-6 pb-0 mb-6 flex justify-between items-center bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                    <div class="flex justify-start items-center">
+                    class="p-6 pb-0 mb-6 flex sm:flex-row flex-col justify-between items-center sm:gap-0 gap-1 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
+                    <div class="flex sm:flex-row flex-col justify-start items-center sm:gap-0 gap-2">
                         <img src="{{ $group->image == null ? asset('assets/data/image-preview.png') : asset('storage/' . $group->image) }}"
-                            alt="group" class="w-48">
+                            alt="group" class="sm:w-48 w-30">
                         <div class="flex flex-col items-start justify-center">
-                            <h6>Groups - {{ $group->name }}</h6>
-                            <h6>Groups - {{ $group->name }}</h6>
-                            <h6>Groups - {{ $group->name }}</h6>
+                            <h6>Group - {{ $group->name }}</h6>
+                            <h6>Group - {{ $group->name }}</h6>
+                            <h6>Group - {{ $group->name }}</h6>
                         </div>
                     </div>
                     <button type="button" data-modal-target="default-modal" data-modal-toggle="default-modal"
@@ -339,11 +339,11 @@
                                         class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         Deskripsi</th>
                                     <th
-                                        class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        class="ml-6 mr-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         Obligation</th>
-                                    <th
+                                    {{-- <th
                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        Action</th>
+                                        Action</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -373,38 +373,38 @@
                                         </td>
 
                                         <td
-                                            class="p-2 pr-10 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                            class="p-2 pr-6 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                             <p class="mb-0 text-xs font-semibold leading-tight">
                                                 {{ $user->nisn == null ? '-' : $user->nisn }}
                                             </p>
                                         </td>
 
                                         <td
-                                            class="p-2 pr-10 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                            class="p-2 pr-6 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                             <p class="mb-0 text-xs font-semibold leading-tight">
                                                 {{ $user->email == null ? '-' : $user->email }}
                                             </p>
                                         </td>
 
                                         <td
-                                            class="p-2 pr-10 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                            class="p-2 pr-6 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                             <p class="mb-0 text-xs font-semibold leading-tight">
                                                 {{ $user->description == null ? '-' : $user->description }}
                                             </p>
                                         </td>
 
                                         <td
-                                            class="p-2 pr-10 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                            <p class="mb-0 text-xs font-semibold leading-tight">
+                                            class="align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                                 @php
                                                     $obligation = $user->pivot->obligation;
                                                 @endphp
+                                            <p class="text-xs {{ $obligation === 'Ketua' ? 'bg-orange-500 text-white w-12 py-1 px-2' : 'bg-blue-500 text-white w-16 py-1 px-2' }} mb-0 font-semibold leading-tight rounded">
                                                 {{ $obligation }}
                                             </p>
                                         </td>
 
 
-                                        <td
+                                        {{-- <td
                                             class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent flex justify-center items-center gap-1">
                                             <a href="{{ url('/group/detail/' . $user->slug) }}">
                                                 <button
@@ -466,7 +466,7 @@
                                                     });
                                                 }
                                             </script>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
 

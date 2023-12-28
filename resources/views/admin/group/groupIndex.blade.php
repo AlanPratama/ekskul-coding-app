@@ -297,8 +297,8 @@
                                                 class="p-2 pr-10 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                                 <div class="flex px-2 py-1">
                                                     <div>
-                                                        <img src="{{ asset('storage/' . $group->image) }}"
-                                                            class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-soft-in-out h-9 w-9"
+                                                        <img src="{{ ($group->image === null ? asset('assets/data/image-preview.png') : asset('storage/' . $group->image)) }}"
+                                                            class="inline-flex items-center justify-center mr-2 text-sm text-white transition-all duration-200 ease-soft-in-out w-10 shadow-soft-xs"
                                                             alt="skill" />
                                                     </div>
                                                     <div class="flex flex-col justify-center">
@@ -316,10 +316,64 @@
 
 
                                             <td
-                                                class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent flex justify-center items-center gap-1">
+                                                class="p-2 py-5 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent flex justify-center items-center gap-1">
                                                 <a href="{{ url('/group/detail/'. $group->slug) }}">
                                                     <button class="bg-gradient-to-tl from-blue-600 to-blue-300 px-2.5 text-xs rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">DETAIL</button>
                                                 </a>
+                                                <button type="button" class="bg-gradient-to-tl from-red-600 to-red-300 px-2.5 text-xs rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"
+                                                onclick="event.preventDefault(); deleteGroup('{{ $group->slug }}');">
+                                                {{-- <i class="fa-solid fa-trash-can bg-gradient-to-tl from-red-600 to-red-300 px-1.4 text-lg rounded py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white"></i> --}}
+                                                HAPUS
+                                                </button>
+                                            <script>
+                                                function deleteGroup(groupSlug) {
+                                                    Swal.fire({
+                                                        title: 'Apakah Anda yakin ?',
+                                                        text: 'Anda tidak dapat mengembalikan ini!',
+                                                        icon: 'warning',
+                                                        showCancelButton: true,
+                                                        confirmButtonText: 'Hapus',
+                                                        confirmButtonColor: '#ff3d41',
+                                                        cancelButtonText: 'Batal',
+                                                        cancelButtonColor: '#8fcc34',
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed || result.status == 200) {
+                                                            axios.delete(`/group/delete/${groupSlug}`)
+                                                                .then(response => {
+                                                                    let timerInterval;
+                                                                    Swal.fire({
+                                                                        title: "BERHASIL!",
+                                                                        html: "GROUP BERHASIL DIHAPUS",
+                                                                        timer: 2000,
+                                                                        icon: 'success',
+                                                                        timerProgressBar: true,
+                                                                        didOpen: () => {
+                                                                            Swal.showLoading();
+                                                                            const timer = Swal.getPopup().querySelector("b");
+                                                                            timerInterval = setInterval(() => {
+                                                                                timer.textContent = `${Swal.getTimerLeft()}`;
+                                                                            }, 100);
+                                                                        },
+                                                                        willClose: () => {
+                                                                            clearInterval(timerInterval);
+                                                                        }
+                                                                    }).then((result) => {
+                                                                        /* Read more about handling dismissals below */
+                                                                        if (result.dismiss === Swal.DismissReason.timer) {
+                                                                            window.location.reload(true);
+                                                                        }
+                                                                        window.location.reload(true);
+                                                                    });
+                                                                })
+                                                                .catch(error => {
+                                                                    console.error(error);
+                                                                    window.location.reload(true);
+
+                                                                });
+                                                        }
+                                                    });
+                                                }
+                                            </script>
                                             </td>
                                         </tr>
                                     @endforeach

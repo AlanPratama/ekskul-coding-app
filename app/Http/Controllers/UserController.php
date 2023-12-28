@@ -54,8 +54,14 @@ class UserController extends Controller
             'name', 'username', 'nisn', 'phone', 'instagram', 'linkedin', 'email', 'class_id', 'description'
         ]));
 
+        $gambar = $user->image;
+
         // Handle image upload if provided
         if ($request->hasFile('image')) {
+            if ($gambar) {
+                Storage::delete($gambar);
+            }
+
             $uploadFile = $request->file('image');
             $extension = $uploadFile->getClientOriginalExtension();
             $storeName = $request->username . now()->format('Ymd') . '.' . $extension;
@@ -64,6 +70,7 @@ class UserController extends Controller
         }
 
         // Save the user model with the updated information
+        $user->slug = null;
         $user->save();
 
         // Sync user skills

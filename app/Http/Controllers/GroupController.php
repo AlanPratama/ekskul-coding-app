@@ -70,7 +70,7 @@ class GroupController extends Controller
     {
         $group = Group::where('slug', $slug)->first();
         $group->name = $request->name;
-        $gambar = $group->gambar;
+        $gambar = $group->image;
 
         if ($request->hasFile('image')) {
             if ($gambar) {

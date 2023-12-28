@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
         //     'role_id' => 1
         // ]);
 
-        for ($i=1; $i < 5; $i++) {
+        for ($i=5; $i < 11; $i++) {
             User::create([
                 'name' => 'Admin-'.$i,
                 'phone' => '08888888888'.$i,

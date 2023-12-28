@@ -412,15 +412,14 @@
                             <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-sm">About me</p>
                             <div class="flex flex-wrap -mx-3">
                                 <div class="w-full max-w-full px-3 shrink-0 md:w-1/2 md:flex-0">
-                                    <div class="mb-4">
+                                    <div class="mb-4 -mt-2">
                                         <label for="description"
                                             class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Deskripsi</label>
-                                        <input type="text" name="description" value="{{ Auth::user()->description }}"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
+                                            <textarea name="description" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" rows="3">{{ Auth::user()->description }}</textarea>
                                     </div>
                                 </div>
                                 <div class="w-full max-w-full px-3 shrink-0 md:w-1/2 md:flex-0">
-                                    <div class="mb-4">
+                                    <div class="flex flex-col mb-4">
                                         <label for="skill"
                                             class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Skill</label>
                                         <select
