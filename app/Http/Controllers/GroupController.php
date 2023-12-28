@@ -84,27 +84,38 @@ class GroupController extends Controller
             $group->image = $path;
         }
         $group->slug = null;
-        $group->update();
+        $group->save();
 
-        $pivotGroupKetua = DB::table('pivot_group')->where('group_id', $group->id)->where('obligation', 'Ketua')->first();
-        $pivotGroupAnggpta = DB::table('pivot_group')->where('group_id', $group->id)->where('obligation', 'Anggota')->get();
+        // $pivotGroupKetua = DB::table('pivot_group')->where('group_id', $group->id)->where('obligation', 'Ketua')->first();
+        // $pivotGroupAnggota = DB::table('pivot_group')->where('group_id', $group->id)->where('obligation', 'Anggota')->get();
 
-        if ($request->ketua_id) {
+        if ($request->has('ketua_id')) {
+            // $userKetua[$request->input('ketua_id')] = ['obligation' => 'Ketua'];
             $ketuaId = $request->ketua_id;
-            foreach ($pivotGroupKetua as $ketua) {
-                $ketua->user_id = $ketuaId;
-                $ketua->save();
-            }
+            $group->users()->wherePivot('obligation', 'Ketua')->detach();
+            $group->users()->attach($ketuaId, ['obligation' => 'Ketua']);
+                // DB::table('pivot_group')
+            //     ->where('group_id', $group->id)
+            //     ->where('obligation', 'Ketua')
+            //     ->update(['user_id' => $ketuaId]);
         }
-
 
         if ($request->has('anggota')) {
-            $group->users()->sync($request->input('anggota'), 'Anggota');
-        } else {
-            $group->users()->detach();
+            $group->users()->wherePivot('obligation', 'Anggota')->detach();
+            $group->users()->attach($request->anggota, ['obligation' => 'Anggota']);
+
+            // $usersAnggota = [];
+            // foreach ($request->input('anggota') as $anggotaId) {
+            //     $usersAnggota[$anggotaId] = [
+            //         'obligation' => 'Anggota',
+            //     ];
+            // }
+            // $group->users()->sync($usersAnggota);
         }
 
-        return redirect()->back()->with('status', 'BERHASIL MENGEDIT GROUP');
+
+
+        return redirect('group/detail/' . $group->slug)->with('status', 'BERHASIL MENGEDIT GROUP');
     }
 
     public function deleteGroup($slug)
