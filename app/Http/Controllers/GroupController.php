@@ -3,13 +3,52 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\PivotGroup;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class GroupController extends Controller
 {
+    public function kumpulanGroup()
+    {
+        // $idUser = Auth::user();
+        $pivotGroup = PivotGroup::where('user_id', Auth::user()->id)->first();
+        $group =    Group::where('id', $pivotGroup->group_id)->first();
+        $users = User::all();
+
+        $otherGroups = Group::where('id', '!=', $group->id)->get();
+
+        return view('groupUser.kumpulanGroup', compact('pivotGroup', 'group', 'users', 'otherGroups'));
+
+        // $pivotGroup = DB::table('pivot_group')->where('group_id', $group->id)->where('obligation', 'Ketua')->first();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ONLY PENGURUS || ONLY PENGURUS || ONLY PENGURUS || ONLY PENGURUS || ONLY PENGURUS || ONLY PENGURUS || ONLY PENGURUS
 
     public function index()
     {
@@ -94,7 +133,7 @@ class GroupController extends Controller
             $ketuaId = $request->ketua_id;
             $group->users()->wherePivot('obligation', 'Ketua')->detach();
             $group->users()->attach($ketuaId, ['obligation' => 'Ketua']);
-                // DB::table('pivot_group')
+            // DB::table('pivot_group')
             //     ->where('group_id', $group->id)
             //     ->where('obligation', 'Ketua')
             //     ->update(['user_id' => $ketuaId]);

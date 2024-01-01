@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Absen')
+
 @section('content')
     <main class="ease-soft-in-out xl:ml-72 relative h-full max-h-screen rounded-xl transition-all duration-200">
         <!-- Navbar -->
@@ -29,8 +30,8 @@
                     <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
                         <!-- online builder btn  -->
                         <!-- <li class="flex items-center">
-                                                  <a class="inline-block px-8 py-2 mb-0 mr-4 text-xs font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer leading-pro border-fuchsia-500 ease-soft-in hover:scale-102 active:shadow-soft-xs text-fuchsia-500 hover:border-fuchsia-500 active:bg-fuchsia-500 active:hover:text-fuchsia-500 hover:text-fuchsia-500 tracking-tight-soft hover:bg-transparent hover:opacity-75 hover:shadow-none active:text-white active:hover:bg-transparent" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
-                                                </li> -->
+                                                      <a class="inline-block px-8 py-2 mb-0 mr-4 text-xs font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer leading-pro border-fuchsia-500 ease-soft-in hover:scale-102 active:shadow-soft-xs text-fuchsia-500 hover:border-fuchsia-500 active:bg-fuchsia-500 active:hover:text-fuchsia-500 hover:text-fuchsia-500 tracking-tight-soft hover:bg-transparent hover:opacity-75 hover:shadow-none active:text-white active:hover:bg-transparent" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
+                                                    </li> -->
 
                         <li class="flex items-center pl-4 xl:hidden">
                             <a href="javascript:;" class="block p-0 text-sm transition-all ease-nav-brand text-slate-500"
@@ -396,7 +397,8 @@
                                     </button>
                                 </div>
                                 <!-- Modal body -->
-                                <div class="p-4 md:p-5 space-y-4 flex sm:flex-row flex-col justify-center items-center gap-3">
+                                <div
+                                    class="p-4 md:p-5 space-y-4 flex sm:flex-row flex-col justify-center items-center gap-3">
                                     <img src="{{ asset('assets/data/image-preview.png') }}" alt=""
                                         class="w-68 rounded" id="imagePreviewIzin"
                                         style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
@@ -406,14 +408,17 @@
                                         <input type="text"
                                             class="text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
                                             placeholder="Keterangan: 'Acara'" aria-label="keterangan" name="keterangan"
-                                            value="{{ old('keterangan') }}" aria-describedby="keterangan-addon" required />
+                                            value="{{ old('keterangan') }}" aria-describedby="keterangan-addon"
+                                            required />
 
-                                        <textarea rows="3" class="text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
-                                        placeholder="Alasan: 'Ada acara pernikahan yang harus saya dan keluarga hadiri'" aria-label="reason" name="reason"
-                                        value="{{ old('reason') }}" aria-describedby="reason-addon" required></textarea>
+                                        <textarea rows="3"
+                                            class="text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
+                                            placeholder="Alasan: 'Ada acara pernikahan yang harus saya dan keluarga hadiri'" aria-label="reason"
+                                            name="reason" value="{{ old('reason') }}" aria-describedby="reason-addon" required></textarea>
 
                                         <input name="image" id="gambarIzin" type="file" accept="image/*"
-                                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" required>
+                                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                            required>
                                     </div>
 
                                     <script>
@@ -439,14 +444,15 @@
                                 <!-- Modal footer -->
                                 <div
                                     class="flex justify-end items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Kirim</button>
+                                    <button type="submit"
+                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Kirim</button>
                                 </div>
                             </form>
+                        </div>
                     </div>
-                </div>
-                {{-- <button type="button" class="inline-block px-6 py-3 mb-4 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Button</button> --}}
+                    {{-- <button type="button" class="inline-block px-6 py-3 mb-4 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Button</button> --}}
 
-            </div>
+                </div>
             </div>
         @endif
 
@@ -469,11 +475,13 @@
                             {{ \Carbon\Carbon::parse($present->date)->format('d F Y') }} -
                             {{ $present->created_at->format('H:i') }}
                             <span
-                                class="{{ ($present->status === 'Hadir' ? 'bg-blue-500' : 'bg-orange-500') }} text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded ms-3">{{ $present->status }}</span>
+                                class="{{ $present->status === 'Hadir' ? 'bg-blue-500' : 'bg-orange-500' }} text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded ms-3">{{ $present->status }}</span>
                         </h3>
                         @if ($present->status === 'Izin')
-                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Ket: {{ $present->keterangan }}</time>
-                        <p class="text-base font-normal pb-0 mb-0 pr-1 text-gray-500 dark:text-gray-400">{{ $present->reason }}</p>
+                            <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Ket:
+                                {{ $present->keterangan }}</time>
+                            <p class="text-base font-normal pb-0 mb-0 pr-1 text-gray-500 dark:text-gray-400">
+                                {{ $present->reason }}</p>
                         @endif
                         <div
                             class="inline-flex items-center px-4 py-2 mt-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">
@@ -512,4 +520,9 @@
 
 
     </main>
+@endsection
+
+@section('sideNavJs')
+    <script src="{{ asset('assets/js/sidenav-burger.js') }}"></script>
+    <script src="{{  asset('assets/js/fixed-plugin.js') }}"></script>
 @endsection

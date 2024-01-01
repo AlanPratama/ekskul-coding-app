@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', $group->slug)
+@section('title', 'Kumpulan Group')
 
 @section('head')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
@@ -17,16 +17,16 @@
             navbar-main navbar-scroll="true">
             <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
                 {{-- <nav>
-                <!-- breadcrumb -->
-                <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
-                    <li class="text-sm leading-normal">
-                        <a class="opacity-50 text-slate-700" href="javascript:;">Pages</a>
-                    </li>
-                    <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
-                        aria-current="page">Tables</li>
-                </ol>
-                <h6 class="mb-0 font-bold capitalize">Tables</h6>
-            </nav> --}}
+                    <!-- breadcrumb -->
+                    <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
+                        <li class="text-sm leading-normal">
+                            <a class="opacity-50 text-slate-700" href="javascript:;">Pages</a>
+                        </li>
+                        <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
+                            aria-current="page">Tables</li>
+                    </ol>
+                    <h6 class="mb-0 font-bold capitalize">Tables</h6>
+                </nav> --}}
 
                 <div class="flex  items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
                     <div class="flex items-center md:ml-auto md:pr-4 w-full">
@@ -36,11 +36,6 @@
                         </div>
                     </div>
                     <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
-                        <!-- online builder btn  -->
-                        <!-- <li class="flex items-center">
-                                                                                                                  <a class="inline-block px-8 py-2 mb-0 mr-4 text-xs font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer leading-pro border-fuchsia-500 ease-soft-in hover:scale-102 active:shadow-soft-xs text-fuchsia-500 hover:border-fuchsia-500 active:bg-fuchsia-500 active:hover:text-fuchsia-500 hover:text-fuchsia-500 tracking-tight-soft hover:bg-transparent hover:opacity-75 hover:shadow-none active:text-white active:hover:bg-transparent" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
-                                                                                                                </li> -->
-
                         <li class="flex items-center pl-4 xl:hidden">
                             <a href="javascript:;" class="block p-0 text-sm transition-all ease-nav-brand text-slate-500"
                                 sidenav-trigger>
@@ -160,7 +155,7 @@
 
         <div class="w-full px-3">
             <div
-                class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
+                class="relative flex flex-col min-w-0 mb-12 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
                 <div
                     class="p-6 pb-0 mb-6 flex sm:flex-row flex-col justify-between items-center sm:gap-0 gap-1 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <div class="flex sm:flex-row flex-col justify-start items-center sm:gap-0 gap-2">
@@ -240,13 +235,29 @@
                                     </div>
                                     <div class="">
                                         <div class="mb-3">
-                                            <label for="ketua_id"
+                                            <label
                                                 class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Pilih
                                                 Ketua</label>
-                                            <select id="ketuaSelect" name="ketua_id"
+                                            <select id="ketuaSelect" disabled
                                                 class="text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
                                                 required>
                                                 @php
+                                                    $usersWithKetua = [];
+                                                    foreach ($group->users as $user) {
+                                                        if ($user->pivot->obligation === 'Ketua') {
+                                                            $usersWithKetua[] = [
+                                                                'id' => $user->id,
+                                                                'name' => $user->name,
+                                                                'obligation' => $user->pivot->obligation,
+                                                            ];
+                                                        }
+                                                    }
+                                                @endphp
+                                                <option value="{{ $usersWithKetua[0]['id'] }}" disabled selected>
+                                                    {{ $usersWithKetua[0]['name'] }} -
+                                                    {{ $usersWithKetua[0]['obligation'] }}
+                                                </option>
+                                                {{-- @php
                                                     $usersWithKetua = [];
                                                     foreach ($group->users as $user) {
                                                         if ($user->pivot->obligation === 'Ketua') {
@@ -272,12 +283,12 @@
                                                     @if ($pivotGroup->user_id != $user->id)
                                                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                                                     @endif
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="anggota_id"
+                                            <label
                                                 class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Pilih
                                                 Anggota</label>
                                             <select id="anggotaSelect"
@@ -395,10 +406,11 @@
 
                                         <td
                                             class="align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                                @php
-                                                    $obligation = $user->pivot->obligation;
-                                                @endphp
-                                            <p class="text-xs {{ $obligation === 'Ketua' ? 'bg-orange-500 text-white w-12 py-1 px-2' : 'bg-blue-500 text-white w-16 py-1 px-2' }} mb-0 font-semibold leading-tight rounded">
+                                            @php
+                                                $obligation = $user->pivot->obligation;
+                                            @endphp
+                                            <p
+                                                class="text-xs {{ $obligation === 'Ketua' ? 'bg-orange-500 text-white w-12 py-1 px-2' : 'bg-blue-500 text-white w-16 py-1 px-2' }} mb-0 font-semibold leading-tight rounded">
                                                 {{ $obligation }}
                                             </p>
                                         </td>
@@ -475,6 +487,179 @@
                     </div>
                 </div>
             </div>
+
+            <h1 class="text-2xl ml-2">Group Lainnya</h1>
+            @if ($otherGroups->count() > 0)
+                <div class="flex flex-wrap justify-start items-center sm:gap-3 gap-1 ml-2 mb-12">
+                    @foreach ($otherGroups as $groups)
+                        <div class="xl:w-72 sm:w-60 w-44 mb-6 md:flex-none xl:mb-0 rounded-2xl shadow-soft-xxs">
+                            <div
+                                class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
+                                <div class="relative">
+                                    <a class="block">
+                                        <img src="{{ $groups->image == null ? asset('assets/data/image-preview.png') : asset('storage/' . $groups->image) }}"
+                                            alt="img-blur-shadow"
+                                            class="xl:w-72 xl:h-72 sm:w-60 sm:h-60 w-44 h-44 border border-b-gray-200 rounded-2xl" />
+                                    </a>
+                                </div>
+                                <div class="flex-auto px-3 pb-2 pt-6">
+                                    <h5 class="sm:text-xl text-lg">{{ $groups->name }}</h5>
+                                    <div class="flex items-center justify-between">
+                                        <button type="button" data-modal-target="{{ $groups->slug }}-modal-detail"
+                                            data-modal-toggle="{{ $groups->slug }}-modal-detail"
+                                            class="inline-block px-8 py-2 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer leading-pro ease-soft-in text-xs hover:scale-102 active:shadow-soft-xs tracking-tight-soft border-fuchsia-500 text-fuchsia-500 hover:border-fuchsia-500 hover:bg-transparent hover:text-fuchsia-500 hover:opacity-75 hover:shadow-none active:bg-fuchsia-500 active:text-white active:hover:bg-transparent active:hover:text-fuchsia-500">
+                                            <span class="sm:inline-block hidden ">Lihat</span> Detail
+                                        </button>
+                                        <div id="{{ $groups->slug }}-modal-detail"
+                                            style="z-index: 999 !important;" tabindex="-1" aria-hidden="true"
+                                            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 justify-center text-start items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                            <div class="relative p-4 w-full max-w-2xl max-h-full">
+                                                <!-- Modal content -->
+                                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                                    <!-- Modal header -->
+                                                    <div
+                                                        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                                        <h3
+                                                            class="text-xl font-semibold text-gray-900 dark:text-white flex justify-start items-center gap-2">
+                                                            <img src="{{ asset('storage/' . $groups->image) }}"
+                                                                alt="groupss" class="w-10 h-10">
+                                                            {{ $groups->name }}
+                                                        </h3>
+                                                        <button type="button"
+                                                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                                            data-modal-hide="{{ $groups->slug }}-modal-detail">
+                                                            <svg class="w-3 h-3" aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                viewBox="0 0 14 14">
+                                                                <path stroke="currentColor" stroke-linecap="round"
+                                                                    stroke-linejoin="round" stroke-width="2"
+                                                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                            </svg>
+                                                            <span class="sr-only">Close modal</span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- Modal body -->
+                                                    <div class="p-4 md:p-5 space-y-4">
+                                                        <div class="flex flex-wrap -mx-3">
+                                                            <div class="flex-none w-full max-w-full px-3">
+                                                                <div
+                                                                    class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
+                                                                    <div class="flex-auto px-0 pt-0 pb-2">
+                                                                        <div class="p-0 overflow-x-auto">
+                                                                            <table
+                                                                                class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
+                                                                                <thead class="align-bottom">
+                                                                                    <tr>
+                                                                                        <th
+                                                                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                            Users</th>
+                                                                                        <th
+                                                                                            class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                            Email</th>
+                                                                                        {{-- <th
+                                                                                            class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                            Kelompok</th> --}}
+                                                                                        <th
+                                                                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                            Role</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    @foreach ($groups->users as $user)
+                                                                                    <tr>
+                                                                                        <td
+                                                                                            class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                                                                            <div
+                                                                                                class="flex px-2 py-1">
+                                                                                                <div>
+                                                                                                    <img src="{{ $user->image == null ? asset('assets/data/no-img.jpg') : asset('storage/' . $user->image) }}"
+                                                                                                        class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-soft-in-out h-9 w-9 rounded-xl"
+                                                                                                        alt="user1" />
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="flex flex-col justify-center">
+                                                                                                    <h6
+                                                                                                        class="mb-0 text-sm leading-normal">
+                                                                                                        {{ $user->name }}
+                                                                                                    </h6>
+                                                                                                    <p
+                                                                                                        class="mb-0 text-xs leading-tight text-slate-400">
+                                                                                                        {{ $user->phone }}
+                                                                                                    </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </td>
+
+                                                                                        <td
+                                                                                            class="p-2 text-start align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                                                                            <span
+                                                                                                class="text-xs font-semibold leading-tight text-slate-400">{{ $user->email }}</span>
+                                                                                        </td>
+
+                                                                                        {{-- <td
+                                                                                                    class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                                                                                    <p
+                                                                                                        class="mb-0 text-xs font-semibold leading-tight">
+                                                                                                        {{ $user->groups->name }}
+
+                                                                                                    </p>
+                                                                                                    <p
+                                                                                                        class="mb-0 text-xs leading-tight text-slate-400">
+                                                                                                        Anggota
+                                                                                                    </p>
+                                                                                                </td> --}}
+
+                                                                                        <td
+                                                                                            class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                                                                            <span
+                                                                                                class="bg-gradient-to-tl from-green-600 to-lime-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
+                                                                                                @if ($user->role_id === 1)
+                                                                                                    P.
+                                                                                                    Jawab
+                                                                                                @elseif($user->role_id === 2)
+                                                                                                    Pengurus
+                                                                                                @else
+                                                                                                    Member
+                                                                                                @endif
+                                                                                            </span>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    @endforeach
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            @foreach ($groups->users as $user)
+                                                <div title="{{ $user->name }}"
+                                                    class="relative z-20 inline-flex items-center justify-center w-6 h-6 -ml-4 text-white transition-all duration-200 border-2 border-white border-solid ease-soft-in-out text-xs rounded-circle hover:z-30">
+                                                    <img class="w-full rounded-circle" alt="Image placeholder"
+                                                        src="{{ $user->image == null ? asset('assets/data/no-img.jpg') : asset('storage/' . $user->image) }}" />
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="flex flex-col justify-center items-center">
+                    <img src="{{ asset('assets/data/file-not-found.jpg') }}" alt="not-found" class="w-68 ">
+                    <h3 class="text-xl">TIDAK ADA DATA GROUP LAINNYA</h3>
+                </div>
+            @endif
+
         </div>
     </main>
 
@@ -485,9 +670,4 @@
             $('.anggota-select').select2();
         });
     </script>
-@endsection
-
-@section('sideNavJs')
-    <script src="{{  asset('assets/js/fixed-plugin.js') }}"></script>
-    <script src="{{ asset('assets/js/sidenav-burger.js') }}"></script>
 @endsection
