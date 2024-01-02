@@ -11,7 +11,12 @@ class Role extends Model
 
     protected $table = 'roles';
 
+    protected $fillable = [
+        'name'
+    ];
+
     public function users() {
-        return $this->hasOne(User::class, 'role_id');
+        return $this->hasMany(User::class, 'role_id');
     }
+
 }

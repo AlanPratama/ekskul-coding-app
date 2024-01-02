@@ -54,6 +54,9 @@ Route::middleware('auth')->group(function () {
 
 
     Route::middleware('only_pengurus')->group(function () {
+        Route::get('/users', [UserController::class, 'usersAdmin']);
+
+
         Route::get('/side-part', [UserController::class, 'sidePart']);
         // SKILLS || SKILLS || SKILLS || SKILLS || SKILLS || SKILLS || SKILLS || SKILLS || SKILLS || SKILLS || SKILLS
         Route::post('/add-skill', [UserController::class, 'addSkill'])->name('addSkill');

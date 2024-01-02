@@ -198,6 +198,79 @@ class UserController extends Controller
 
 
 
+
+    public function usersAdmin()
+    {
+        $users = User::where('role_id', '!=', '1')->get();
+
+        return view('admin.user.usersIndex', compact('users'));
+    }
+
+    public function editUser(Request $request, $slug)
+    {
+        $user = User::where('slug', $slug)->first();
+
+        $validate = $request->validate([
+            'name' => 'required|string',
+            'username' => 'required|string',
+            'nisn' => 'nullable|string',
+            'phone' => 'nullable|string',
+            'instagram' => 'nullable|string',
+            'linkedin' => 'nullable|string',
+            'email' => 'required|email',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'class_id' => '',
+            'description' => 'nullable|string',
+            'skill' => 'nullable|array',
+            'skill.*' => 'exists:skills,id',
+        ]);
+
+        $user->update($request->only([
+            'name', 'username', 'nisn', 'phone', 'instagram', 'linkedin', 'email', 'class_id', 'description'
+        ]));
+
+        $gambar = $user->image;
+        if ($request->hasFile('image')) {
+            if ($gambar) {
+                Storage::delete($gambar);
+            }
+            $uploadFile = $request->file('image');
+            $extension = $uploadFile->getClientOriginalExtension();
+            $storeName = $request->username . now()->format('Ymd') . '.' . $extension;
+            $path = $uploadFile->storeAs('users', $storeName);
+            $user->image = $path;
+        }
+
+        $user->slug = null;
+        $user->save();
+
+        if ($request->has('skills')) {
+            $user->skills()->sync($request->input('skills'));
+        } else {
+            $user->skills()->detach();
+        }
+
+        return redirect()->back()->with('status', 'BERHASIL MENGEDIT USER '.$request->username);
+    }
+
+
+    public function deleteUser($slug)
+    {
+        $user = User::where('slug', $slug)->first();
+        DB::table('pivot_group')->where('user_id', $user->id)->delete();
+        // NANTI DULU AJA, SOALNYA ADA TABLE LAIN YANG HARUS DIBUAT, YANG DAPAT MENAMPUNG VALUE ID SI USER
+
+        return redirect()->back()->with('status', 'USER BERHASIL DIHAPUS');
+    }
+
+
+
+
+
+
+
+
+
     public function sidePart()
     {
         $skills = Skill::all();
